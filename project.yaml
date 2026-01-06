@@ -1,9 +1,9 @@
 name: red-dead-site
 subdomain: red
 type: docker
-port: 80
+port: 3002
+container_port: 80
 description: "Red Dead Redemption 2 Fan Page"
 auto_ssl: true
-health_check: /api/health
 created_at: 2026-01-06T14:08:02.518Z
 created_by: theArchitect
