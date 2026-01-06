@@ -1,10 +1,7 @@
 FROM nginx:alpine
 
-# Copy static files
-COPY *.html /usr/share/nginx/html/
-COPY *.css /usr/share/nginx/html/ 2>/dev/null || true
-COPY *.js /usr/share/nginx/html/ 2>/dev/null || true
-COPY *.jpg *.jpeg *.png *.gif *.svg /usr/share/nginx/html/ 2>/dev/null || true
+# Copy all files
+COPY . /usr/share/nginx/html/
 
 EXPOSE 80
 
