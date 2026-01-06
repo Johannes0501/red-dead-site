@@ -1,19 +1,11 @@
-FROM node:20-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy static files
+COPY *.html /usr/share/nginx/html/
+COPY *.css /usr/share/nginx/html/ 2>/dev/null || true
+COPY *.js /usr/share/nginx/html/ 2>/dev/null || true
+COPY *.jpg *.jpeg *.png *.gif *.svg /usr/share/nginx/html/ 2>/dev/null || true
 
-# Install dependencies
-COPY package*.json ./
-RUN npm install --omit=dev
+EXPOSE 80
 
-# Copy source
-COPY . .
-
-# Build if needed
-RUN npm run build --if-present
-
-EXPOSE 3000
-ENV PORT=3000
-ENV NODE_ENV=production
-
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
